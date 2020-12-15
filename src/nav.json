@@ -212,6 +212,10 @@
               "slug": "vote-counter-blueprint"
             },
             {
+              "name": "Chat room template",
+              "slug": "chat-blueprint"
+            },
+            {
               "name": "Cat selector VCC",
               "slug": "cat-selector-blueprint"
             }

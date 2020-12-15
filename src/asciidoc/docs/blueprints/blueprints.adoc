@@ -10,6 +10,7 @@ Blueprints are intended for developers who prefer to jump straight to code. For 
 
 * <<magazine-cover-blueprint#, Magazine cover>> - Put your own picture and headline on a magazine by implementing customizable images and text.
 * <<vote-counter-blueprint#, Vote counter>> – Create a multi-user, interactive vote counter by implementing a Koji database and real-time dispatch.
+* <<chat-blueprint#, Chat room>> - Create a chat room
 
 == Build your custom VCC
 

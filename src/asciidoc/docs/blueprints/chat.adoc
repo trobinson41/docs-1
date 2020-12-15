@@ -1,0 +1,33 @@
+= Chat room template
+:page-slug: chat-blueprint
+:page-description: Blueprint for a chat room
+
+Follow this blueprint to build a template for your own real-time online chat room.
+
+=== Prerequisites
+
+* Familiarity with web development.
+React and ES6 basics are a plus.
+* Familiarity with the Koji remix process.
+For an overview, see the <<start-guide-1#, starter guide>>.
+
+=== Level
+
+* *Koji*: Beginner – Intermediate
+* *Developer*: Intermediate – Advanced
+* *Time*: 45 minutes
+
+== Building blocks
+
+=== Remix the scaffold
+
+Remix an existing web application on Koji that implements basic elements of your favorite framework.
+
+[.tabs,scope="lang"]
+--
+.React
+include::../_includes/starterScaffolds.adoc[tag=reactVccs]
+
+.Vanilla JS
+include::../_includes/starterScaffolds.adoc[tag=vanilla]
+--
