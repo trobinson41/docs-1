@@ -743,10 +743,10 @@ function editText() {
 
 ## Testing the expose function
 
-To test whether the expose function is working, you can use the *Editing* tab of the *Live Preview* pane.
+To test whether the expose function is working, you can use the *Remix* tab of the *Live Preview* pane.
 This feature enables you to test the template as if it were published on Koji.
 
-. In the *Live Preview* pane, click *Editing* to switch to the template editing mode.
+. In the *Live Preview* pane, click *Remix* to switch to the template editing mode.
 . Click the title in the preview.
 +
 The VCC should open automatically and allow for text input.
@@ -903,9 +903,9 @@ In the `app.component.html` file, use a dynamic `class`.
 ----
 --
 
-. To test the dynamic styling, you can toggle the live preview between the *Editing* and *Preview* modes.
-* In *Editing* mode, the “editable” styles should be visible, and the click handler should open the VCC, as expected.
-* In *Preview* mode, the “editable” styles should not be visible, and nothing should happen when clicking the `h1` element.
+. To test the dynamic styling, you can toggle the live preview between the *Remix* and *Default* modes.
+* In *Remix* mode, the “editable” styles should be visible, and the click handler should open the VCC, as expected.
+* In *Default* mode, the “editable” styles should not be visible, and nothing should happen when clicking the `h1` element.
 
 == Making the template “feed-aware”
 
