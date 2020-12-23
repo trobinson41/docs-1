@@ -672,7 +672,7 @@ The template must expose a way for a remixer to open the VCC when customizing it
 .React
 [source,JavaScript]
 ----
-handleClick = () => {
+handleTitleClick = () => {
   // Conditionally handle the click, only if the template is being remixed
   if (this.state.isRemixing) {
     this.instantRemixing.onPresentControl(['settings', 'title']);
@@ -682,7 +682,7 @@ handleClick = () => {
 render() {
   return (
     <Container>
-      <h1 onClick={this.handleClick}>{this.state.title}</h1>
+      <h1 onClick={this.handleTitleClick}>{this.state.title}</h1>
       <Image src={'https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png'} />
     </Container>
   );
@@ -708,7 +708,7 @@ document.addEventListener('click', function (event) {
 .app.component.ts
 [source,TypeScript]
 ----
-handleClick = () => {
+handleTitleClick = () => {
   // Conditionally handle the click, only if the template is being remixed
   if (this.isRemixing) {
     this.instantRemixing.onPresentControl(['settings', 'title']);
@@ -720,7 +720,7 @@ handleClick = () => {
 [source,JavaScript]
 ----
 <div class="container">
-  <h1 (click)="handleClick()">{{title}}</h1>
+  <h1 (click)="handleTitleClick()">{{title}}</h1>
   <img class="image" src="https://images.koji-cdn.com/cf19e146-554d-459e-96a1-b36b71eda51e/userData/gi3e2wscdw-b8ae90b11dbb4339a93af61c9e0a2100.png" />
 </div>
 ----
@@ -847,7 +847,7 @@ In the `App.js` file, use a dynamic `className`.
 ----
 <h1
   className={this.state.isRemixing ? 'active' : ''}
-  onClick={this.handleClick}
+  onClick={this.handleTitleClick}
   >
   {this.state.title}
 </h1>
@@ -884,7 +884,7 @@ In the `app.component.html` file, use a dynamic `class`.
 ----
 <h1
   class="{{isRemixing ? 'active' : ''}}"
-  (click)="handleClick()"
+  (click)="handleTitleClick()"
 >
   {{title}}
 </h1>
