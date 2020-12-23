@@ -1,21 +1,47 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
+import { Link } from 'gatsby';
 
-import { BLACK, BLUE } from '../constants/colors';
+import { BLACK, DARK_GRAY, LIGHT_GRAY } from '../constants/colors';
 
-import Link from './Link';
 import Logo from './Logo';
-import Search from './Search';
+import DiscordLogo from './DiscordLogo';
+import GithubLogo from './GithubLogo';
 
-const StyledToolbar = styled(Toolbar)`
-  padding: 0 !important;
+const Container = styled.div`
+  height: 76px;
+  width: calc(100% - 60px);
+  margin: 0 30px;
+  border-bottom: 1px solid #f4f4f4;
+  padding: 5px 0px 10px 0px;
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    height: 60px;
+  }
+`;
+
+const Wrapper = styled.div`
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+
+  a {
+    font-size: 16px;
+    color: ${DARK_GRAY};
+    padding: 4px 8px;
+    border-radius: 8px;
+    text-decoration: none;
+  }
+
+  a:hover {
+    background: ${LIGHT_GRAY};
+    text-decoration: none;
+  }
 `;
 
 const LogoWrapper = styled.div`
@@ -30,208 +56,120 @@ const LogoWrapper = styled.div`
   }
 `;
 
-const NavLinkWrapper = styled.div`
-  margin-top: 6px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  margin-right: ${({ style: { logo } }) => logo ? '8px' : '0'};
-  margin-left: ${({ style: { logo } }) => logo ? '42px' : '0'};
-  margin-top: 3px;
+const StyledLink = styled(Link)`
+  text-decoration: none;
 
-  @media screen and (max-width: 1023px) {
-    margin-left: -4px;
+  &:hover {
+    text-decoration: none;
   }
 `;
 
-const SearchWrapper = styled.div`
+const LogoLink = styled(StyledLink)`
+  display: flex;
+  align-items: center;
+  margin: 4px 0 0 -8px;
+
+  a:hover, &:hover {
+    background: transparent !important;
+  }
+`;
+
+const SectionLinks = styled.div`
+  display: flex;
+  align-items: center;
+
+  @media screen and (max-width: 768px) {
+    display: none;
+  }
+`;
+
+const Spacer = styled.div`
   flex: 1 1 auto;
-  text-align: right;
 `;
 
-const SearchIconWrapper = styled.div`
+const BackLink = styled.a`
   display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  flex: 1 0 auto;
-  margin-right: 8px;
-  margin-top: -4px;
-`;
-
-const MobileSearchWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  align-items: center;
-  width: calc(100% - 40px);
-  margin-left: 32px;
-
-  input {
-    width: calc(100vw - 118px) !important;
+  
+  @media screen and (max-width: 768px) {
+    display: none;
   }
 `;
 
-const StyledAppBar = styled(AppBar)`
-  box-shadow: none !important;
-  background: #ffffff !important;
+const ExternalLink = styled.a`
+  display: flex;
+  padding: 0 !important;
+  margin-right: 10px!important;
 
-  .mobile {
+  @media screen and (max-width: 768px) {
     display: none;
   }
 
-  .desktop {
-    display: inline-flex;
-  }
-
-  @media screen and (max-width: 1023px) {
-    .mobile {
-      display: inline-flex;
-    }
-
-    .desktop {
-      display: none;
-    }
-  }
-`;
-
-const NavLink = styled.a`
-  font-size: 18px;
-  color: #333333;
-
-  &:active, &:focus {
-    color: ${BLACK}
-    text-decoration: none;
-  }
-
   &:hover {
-    color: ${BLACK}
+    background: transparent !important;
+  }
+
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: #a5a5a5;
   }
 `;
 
-const Tooltip = styled.div`
-  position: relative;
-  top: -4px;
-  font-size: 12px;
-  font-weight: bold;
-  background: ${BLUE};
-  color: white;
-  padding: 6px;
-  border-radius: 6px;
-
-
-  &::after {
-    content: '';
-    position: absolute;
-    top: 9px;
-    left: -12px;
-    width: 0px;
-    height: 0px;
-    border: 6px solid #007aff;
-    border-color: transparent ${BLUE} transparent transparent;
-    z-index: -1;
-  }
-}
-`;
-
-const StyledIconButton = styled(IconButton)`
-  margin-top: -4px;
-  margin-left: -2px;
-
-  &:hover {
-    background: transparent;
+const DiscordLink = styled(ExternalLink)`
+  margin-right: 4px!important;
+  svg {
+    margin-top: 4px;
   }
 `;
 
-const AppBarComponent = (props) => {
-  const [mobileSearchIsVisible, setMobileSearchIsVisible] = useState(false);
-
-  return (
-    <StyledAppBar position={'fixed'}>
-      <StyledToolbar className={'mobile'}>
+const AppBar = ({ navItems }) => (
+  <Container>
+    <Wrapper>
+      <LogoLink to={'/'}>
+        <LogoWrapper>
+          <Logo />
+        </LogoWrapper>
+      </LogoLink>
+      <SectionLinks>
         {
-          mobileSearchIsVisible &&
-          <MobileSearchWrapper>
-            <Search isMobile />
-            <CloseIcon
-              onClick={() => setMobileSearchIsVisible(false)}
-              style={{
-                color: '#333333',
-                cursor: 'pointer',
-                marginTop: '4px',
-              }}
-            />
-          </MobileSearchWrapper>
+          navItems.sort((a, b) => a.idx - b.idx).map(({ id, name, defaultPath }) => (
+            <StyledLink key={id} to={defaultPath}>{name}</StyledLink>
+          ))
         }
-        {
-          !mobileSearchIsVisible &&
-          <>
-            <StyledIconButton onClick={() => props.toggleMobileDrawer()}>
-              <MenuIcon />
-            </StyledIconButton>
-            <NavLinkWrapper style={{ logo: true }}>
-              <NavLink
-                href={'https://withkoji.com'}
-              >
-                <LogoWrapper>
-                  <Logo />
-                </LogoWrapper>
-              </NavLink>
-            </NavLinkWrapper>
-            <NavLinkWrapper style={{ logo: false }}>
-              <Link
-                to={'/'}
-              >
-                <Tooltip>
-                  {'for developers'}
-                </Tooltip>
-              </Link>
-            </NavLinkWrapper>
-            <SearchIconWrapper>
-              <SearchIcon
-                onClick={() => setMobileSearchIsVisible(true)}
-                style={{
-                  color: '#333333',
-                  cursor: 'pointer',
-                }}
-              />
-            </SearchIconWrapper>
-          </>
-        }
-      </StyledToolbar>
+      </SectionLinks>
+      <Spacer />
+      <ExternalLink
+        href={'https://github.com/madewithkoji'}
+        target={'_blank'}
+        title={'Check out our Github'}
+      >
+        <GithubLogo />
+      </ExternalLink>
+      <DiscordLink
+        href={'https://discord.com/invite/eQuMJF6'}
+        target={'_blank'}
+        title={'Join us on Discord'}
+        style={{ marginRight: '12px' }}
+      >
+        <DiscordLogo />
+      </DiscordLink>
+      <BackLink href={'https://withkoji.com'} style={{ marginRight: 0 }}>
+        {'Back to withkoji.com'}
+      </BackLink>
+    </Wrapper>
+  </Container>
+);
 
-      <StyledToolbar className={'desktop'}>
-        <NavLinkWrapper style={{ logo: true }}>
-          <NavLink
-            href={'https://withkoji.com'}
-          >
-            <LogoWrapper>
-              <Logo />
-            </LogoWrapper>
-          </NavLink>
-        </NavLinkWrapper>
-        <NavLinkWrapper style={{ logo: false }}>
-          <Link
-            to={'/'}
-          >
-            <Tooltip>
-              {'for developers'}
-            </Tooltip>
-          </Link>
-        </NavLinkWrapper>
-        <SearchWrapper>
-          <Search />
-        </SearchWrapper>
-      </StyledToolbar>
-    </StyledAppBar>
-  );
+AppBar.propTypes = {
+  navItems: PropTypes.arrayOf(PropTypes.shape({
+    defaultPath: PropTypes.string,
+    id: PropTypes.string,
+    name: PropTypes.string,
+  })),
 };
 
-AppBarComponent.propTypes = {
-  toggleMobileDrawer: PropTypes.func,
+AppBar.defaultProps = {
+  navItems: [],
 };
 
-AppBarComponent.defaultProps = {
-  toggleMobileDrawer() { },
-};
-
-export default AppBarComponent;
+export default AppBar;

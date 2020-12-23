@@ -1,5 +1,15 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
+  overflow-x: hidden;
+  color: #111111;
+}
+
 html {
-  scroll-padding-top: 72px;
+  scroll-padding-top: 16px;
 }
 
 * {
@@ -8,4 +18,6 @@ html {
 
 pre {
   font-family: Menlo, Monaco, "Courier New", monospace;
+  border-radius: 4px;
+  font-size: 12px;
 }
