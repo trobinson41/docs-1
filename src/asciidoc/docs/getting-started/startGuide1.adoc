@@ -752,6 +752,9 @@ This feature enables you to test the template as if it were published on Koji.
 The VCC should open automatically and allow for text input.
 If this test works correctly, the VCC should be exposed correctly to the remixer in your published template.
 
+[NOTE]
+If the *Remix* is already active, you might need update it by clicking *Default* and then clicking back on *Remix*.
+
 ## Styling the customizable item
 
 To indicate that an item is “editable,” you can add a conditional visual effect that is displayed when the template is being customized.

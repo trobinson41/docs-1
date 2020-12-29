@@ -571,20 +571,20 @@ In `App.js`, add an `H1` styled component and update the `render` method.
 
 [source,JavaScript]
 ----
-const H1 = styled.h1`
- font-size: ${({ fontSize }) => `${fontSize}px`};
-`;
-...
-
 render() {
-...
-  <H1
-    className={this.state.isRemixing ? 'active' : ''}
-    fontSize={this.state.titleOptions.fontSize}
-    onClick={this.handleTitleClick}>
-    {this.state.titleOptions.title}
-  </H1>
-...}
+  const H1 = styled.h1`
+    font-size: ${({ fontSize }) => `${fontSize}px`};
+  `;
+  return (
+    <Container>
+      <H1
+        className={this.state.isRemixing ? 'active' : ''}
+        fontSize={this.state.titleOptions.fontSize}
+        onClick={this.handleTitleClick}>
+        {this.state.titleOptions.title}
+      </H1>
+  ...
+}
 ----
 ====
 
@@ -812,7 +812,7 @@ include::../_includes/animateExample.css[indent=1]
 .React
 ====
 [.intro]
-In `App.js`, update the `div` element with a dynamic `className`.
+In `App.js`, update the `Container` element with a dynamic `className`.
 
 [source,JavaScript]
 ----
@@ -867,7 +867,7 @@ In `App.svelte`, add a conditional statement.
 [source,JavaScript]
 ----
 {#if isPlaying}
-    <div class="image animate-example" style="background-image: url('{image}');"></div>
+  <div class="image animate-example" style="background-image: url('{image}');"></div>
 	<h1 style='font-size: {titleOptions.fontSize}px'>{titleOptions.title}</h1>
 {:else}
     <div class={isRemixing ? 'image remixing' : 'image'}
@@ -1265,7 +1265,10 @@ In `App.js`, update the `render` method.
 [source,JavaScript]
 ----
 render() {
-    if (this.state.imagesLoaded){
+  if (this.state.imagesLoaded){
+    const H1 = styled.h1`
+      font-size: ${({ fontSize }) => `${fontSize}px`};
+    `;
     return (
       <Container className={this.state.isPlaying ? 'animate-example' : ''}>
         <Fade top cascade>
@@ -1312,12 +1315,12 @@ Update the `app.component.html` file.
 
 [source,JavaScript]
 ----
-<div *ngIf="{{ !imagesLoaded }}" class="spinner">
+<div *ngIf="!imagesLoaded" class="spinner">
         <mat-spinner></mat-spinner>
 </div>
 
 <div
-  *ngIf="{{ imagesLoaded }}"
+  *ngIf="imagesLoaded"
   [@fadeInOnEnter]
   [@fadeOutOnLeave]
   class="{{isPlaying ? 'animate-example container' : 'container'}}" >
@@ -1339,6 +1342,22 @@ Update the `app.component.html` file.
 ====
 
 --
+
+. Select a default image for the logo.
+You can do this by clicking *App settings* and visually selecting an image.
+Alternatively, you can click *App settings*, click the *Code* tab, and entering a value for "logo". For example:
+
+[source, text]
+----
+{
+  "settings": {
+    "titleOptions": {
+      "title": "Hello World!",
+      "fontSize": 48
+    },
+    "logo": "https://images.koji-cdn.com/d9c6b38e-08c4-4faf-ae8e-01082c41a0fb/3f83q-9634d620e97345a6b250ca2feb7e5a2e.png"
+...
+----
 
 . To test the loading experience, add the following code to delay preloading.
 Then, from the *Remote* tab in the right pane, open the template in a new tab.
