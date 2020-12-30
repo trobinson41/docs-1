@@ -1231,6 +1231,10 @@ const loadHandle = LoadingIndicator.ofDocument().init();
 
 .Angular
 ====
+[.tabs]
+=====
+.app.module.ts
+======
 [.intro]
 In `app.module.ts`, import `NgxSpinnerModule` from ngx-spinner and `BrowserAnimationsModule` from @angular/platform-browser/animations.
 
@@ -1251,6 +1255,19 @@ import { NgxSpinnerModule } from "ngx-spinner";
   bootstrap: [AppComponent],
 })
 ----
+======
+
+.app.component.ts
+[source,JavaScript]
+----
+...
+import { NgxSpinnerService } from "ngx-spinner";
+...
+ngOnInit() {
+  this.spinner.show();
+...
+----
+=====
 ====
 
 --
