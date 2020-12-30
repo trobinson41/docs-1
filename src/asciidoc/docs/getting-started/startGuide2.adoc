@@ -1155,10 +1155,12 @@ For more information, see the https://github.com/anderjason/skytree-koji[package
 .Angular
 ====
 [source,bash]
-npm install --save @angular/material @angular/cdk
+//////////npm install --save @angular/material @angular/cdk
+npm install ngx-spinner --save
 
 TIP: This package provides functionality for Angular applications.
-For more information, see the https://material.angular.io/components/progress-spinner/examples[package documentation].
+//////////For more information, see the https://material.angular.io/components/progress-spinner/examples[package documentation].
+For more information, see the https://www.npmjs.com/package/ngx-spinner[package documentation].
 ====
 
 --
@@ -1230,12 +1232,12 @@ const loadHandle = LoadingIndicator.ofDocument().init();
 .Angular
 ====
 [.intro]
-In `app.module.ts`, import `MatProgressSpinnerModule` from @angular/material and `BrowserAnimationsModule` from @angular/platform-browser/animations.
+In `app.module.ts`, import `NgxSpinnerModule` from ngx-spinner and `BrowserAnimationsModule` from @angular/platform-browser/animations.
 
 [source,JavaScript]
 ----
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [AppComponent],
@@ -1243,7 +1245,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatProgressSpinnerModule,
+    NgxSpinnerModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
@@ -1315,14 +1317,14 @@ Update the `app.component.html` file.
 
 [source,JavaScript]
 ----
-<div *ngIf="!imagesLoaded" class="spinner">
-        <mat-spinner></mat-spinner>
+<div *ngIf="!imagesLoaded">
+  <ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise"></ngx-spinner>
 </div>
 
 <div
   *ngIf="imagesLoaded"
-  [@fadeInOnEnter]
-  [@fadeOutOnLeave]
+  ////////[@fadeInOnEnter]
+  ////////[@fadeOutOnLeave]
   class="{{isPlaying ? 'animate-example container' : 'container'}}" >
 
   <h1
