@@ -1155,11 +1155,9 @@ For more information, see the https://github.com/anderjason/skytree-koji[package
 .Angular
 ====
 [source,bash]
-//////////npm install --save @angular/material @angular/cdk
 npm install ngx-spinner --save
 
 TIP: This package provides functionality for Angular applications.
-//////////For more information, see the https://material.angular.io/components/progress-spinner/examples[package documentation].
 For more information, see the https://www.npmjs.com/package/ngx-spinner[package documentation].
 ====
 
@@ -1262,6 +1260,27 @@ import { NgxSpinnerModule } from "ngx-spinner";
 ----
 ...
 import { NgxSpinnerService } from "ngx-spinner";
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition,
+} from '@angular/animations';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition('void <=> *', animate(1000)),
+    ]),
+  ]
+})
 ...
 ngOnInit() {
   this.spinner.show();
@@ -1285,9 +1304,6 @@ In `App.js`, update the `render` method.
 ----
 render() {
   if (this.state.imagesLoaded){
-    const H1 = styled.h1`
-      font-size: ${({ fontSize }) => `${fontSize}px`};
-    `;
     return (
       <Container className={this.state.isPlaying ? 'animate-example' : ''}>
         <Fade top cascade>
@@ -1340,8 +1356,7 @@ Update the `app.component.html` file.
 
 <div
   *ngIf="imagesLoaded"
-  ////////[@fadeInOnEnter]
-  ////////[@fadeOutOnLeave]
+  [@fadeInOut]
   class="{{isPlaying ? 'animate-example container' : 'container'}}" >
 
   <h1
