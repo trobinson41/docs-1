@@ -1238,6 +1238,7 @@ In `app.module.ts`, import `NgxSpinnerModule` from ngx-spinner and `BrowserAnima
 
 [source,JavaScript]
 ----
+...
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from "ngx-spinner";
 
@@ -1252,6 +1253,7 @@ import { NgxSpinnerModule } from "ngx-spinner";
   providers: [],
   bootstrap: [AppComponent],
 })
+...
 ----
 ======
 

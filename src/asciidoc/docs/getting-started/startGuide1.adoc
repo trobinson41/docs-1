@@ -31,7 +31,9 @@ include::../_includes/starterScaffolds.adoc[tag=svelte]
 . {blank}
 include::../_includes/remixNav.adoc[tag=all]
 +
-This action creates a clone of the starter scaffold and opens it in the Koji editor.
+This action creates a clone of the starter scaffold and opens it in *Project Details*.
+
+* Click *Code Editor* to open the Koji editor.
 . Explore the template and the Koji editor.
 * In the right pane, you can see a live preview of the template.
 * In the left pane, you can click *Source Code* to expand the file browser.
